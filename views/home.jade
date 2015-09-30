@@ -1,0 +1,54 @@
+extends ./layout.jade
+
+block scripts
+  script(src='/js/jquery.matchHeight-min.js')
+  
+  script.
+    $(document).ready( function () {
+    $('.equal-height-panels .panel').matchHeight();
+    });
+
+block content
+  title Home
+  
+  // Header div
+  div(class="row")
+    // We need the offsets here due to the sidebar on the left
+    div(class="col-xs-12")
+      h1(class="page-header") Home
+  // End header div
+  
+  // Row for the two panels. Note these are nested rows from the layout file!
+  div(class="row equal-height-panels")
+  
+    // First Panel
+    div(class="col-xs-12 col-sm-6")
+      div(class="panel panel-default")
+        // Panel Heading
+        div(class="panel-heading")
+          span(class="glyphicon glyphicon-cog" aria-hidden="true")
+          | &nbsp;Task Progress
+        // Panel Body (Content)
+        div(class="panel-body")
+          p Go to Task Progress to get a visual overview of current tasks on the FFR Wiki.
+        // End Panel Body
+    // End First Panel
+    
+    // Second Panel
+    div(class="col-xs-12 col-sm-6")
+      div(class="panel panel-default")
+        // Panel Heading
+        div(class="panel-heading")
+          span(class="glyphicon glyphicon-cog" aria-hidden="true")
+          | &nbsp;Wiki Code Creator
+        // Panel Body (Content)
+        div(class="panel-body")
+          h4
+            span(class="label label-success")
+              span(class="glyphicon glyphicon-ok" aria-hidden="true")
+              strong &nbsp;Tip
+          p This tool will allow the user to generate wikicode based off of a form.
+        // End Panel Body
+    // End Second Panel
+    
+  // End nested row
