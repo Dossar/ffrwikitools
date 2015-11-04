@@ -23,6 +23,12 @@ app.get('/', function(req, res) {
   res.render('home.jade');
 });
 
+// WikiCode Page.
+
+app.get('wikicode', function(req, res) {
+    res.render('wikicode.jade');
+})
+
 // Error page which redirects the user back to Search.
 app.get('/*', function(req, res) {
   res.status(404).render('error.jade');
