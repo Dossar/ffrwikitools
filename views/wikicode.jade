@@ -26,22 +26,30 @@ block content
         // Panel Body
         // Contains text fields that user will fill out
         div(class="panel-body")
-          p Fill in text here.
+          // Fields that user fills out
+          form(id="textform", name="Song and File fields", method="post")
+            strong
+              | Level Number = 
+              input(type="text", name="levelnumber")
+              br
+              br
+              | Song Name = 
+              input(type="text", name="song name")
+            
         // End Panel Body
     // End First Panel
     
 
-    // Row for the Make Wiki Code button
-    div(class="row button")
-    
-      //Button
-      div(class="col-xs-12 col-sm-2")
-        div(class="panel panel-default")
-          // Panel Heading
-          div(class="panel-heading")
-            center
-              strong
-                h2 Make Wiki Code
+    // Make Wiki Code button
+    div(class="col-xs-12 col-sm-2")
+      div(class="panel panel-default")
+        // Panel Heading
+        div(class="panel-heading")
+          center
+            strong
+              h2 Make Wiki Code
+        //End Panel Heading
+        
                 
 
     // Wiki Code Panel
