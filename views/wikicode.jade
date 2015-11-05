@@ -1,1 +1,60 @@
 extends ./layout.jade
+
+block scripts
+
+block content
+  title Wiki Code Creator
+  
+  // Header div
+  div(class="row")
+    // We need the offsets here due to the sidebar on the left
+    div(class="col-xs-12")
+      h1(class="page-header") Wiki Code Creator
+  // End header div
+  
+  // Row for the two panels
+  div(class="row equal-height-panels")
+  
+    // Info Panel
+    div(class="col-xs-12 col-sm-6")
+      div(class="panel panel-default")
+        // Panel Heading
+        div(class="panel-heading")
+          center
+            strong
+              h2 Info
+        // Panel Body
+        // Contains text fields that user will fill out
+        div(class="panel-body")
+          p Fill in text here.
+        // End Panel Body
+    // End First Panel
+    
+
+    // Wiki Code Panel
+    div(class="col-xs-12 col-sm-6")
+      div(class="panel panel-default")
+        // Panel Heading
+        div(class="panel-heading")
+          center
+            strong
+              h2 Wiki Code
+        // Panel Body
+        // Contains resulting Wiki Code from Info panel
+        div(class="panel-body")
+          p Wiki Code here.
+        // End Panel Body
+    // End First Panel
+    
+    
+    // Row for the Make Wiki Code button
+    div(class="row button")
+    
+      //Button
+      div(class="col-xs-12 col-sm-6")
+        div(class="panel panel-default")
+          // Panel Heading
+          div(class="panel-heading")
+            center
+              strong
+                h2 Make Wiki Code
