@@ -27,15 +27,14 @@ block content
         // Contains text fields that user will fill out
         div(class="panel-body")
           // Fields that user fills out
-          form(id="textform", name="Song and File fields", method="post")
+          form(name="Song and File fields", method="post")
             strong
               | Level Number = 
-              input(type="text", name="levelnumber")
+              input(id="levelnumber", type="text", name="levelnumber")
               br
               br
               | Song Name = 
-              input(type="text", name="song name")
-            
+              input(type="text", name="song name")            
         // End Panel Body
     // End First Panel
     
