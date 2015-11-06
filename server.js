@@ -24,7 +24,7 @@ app.get('/', function(req, res) {
 });
 
 // WikiCode Page.
-app.get('/wikicode.html', function(req, res) {
+app.get('/wikicode', function(req, res) {
     res.render('wikicode.jade');
 })
 

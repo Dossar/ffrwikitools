@@ -2,6 +2,15 @@ extends ./layout.jade
 
 block scripts
 
+  link(rel='stylesheet' href='/css/wikicode.css')
+
+  script(src='/js/jquery.matchHeight-min.js')
+  
+  script.
+    $(document).ready( function () {
+    $('.equal-height-panels .panel').matchHeight();
+    });
+
 block content
   title Wiki Code Creator
   
@@ -10,60 +19,44 @@ block content
     // We need the offsets here due to the sidebar on the left
     div(class="col-xs-12")
       h1(class="page-header") Wiki Code Creator
-  // End header div
   
   // Row for the two panels
   div(class="row equal-height-panels")
   
     // Info Panel
-    div(class="col-xs-12 col-sm-5")
+    div(class="col-sm-12 col-md-5")
       div(class="panel panel-default")
+      
         // Panel Heading
         div(class="panel-heading")
           center
-            strong
-              h2 Info
-        // Panel Body
-        // Contains text fields that user will fill out
-        div(class="panel-body")
-          // Fields that user fills out
-          form(name="Song and File fields", method="post")
-            strong
-              | Level Number = 
-              input(id="levelnumber", type="text", name="levelnumber")
-              br
-              br
-              | Song Name = 
-              input(type="text", name="song name")            
-        // End Panel Body
-    // End First Panel
-    
+            h4(class="panel-title") Info
 
+        // Panel Body that containing the form with text fields that the user will fill out.
+        div(class="panel-body")
+          form(name="Song and File fields" method="post")
+              
+            // Level Number Field
+            label Level Number
+            input(id="levelnumber" type="text" name="levelnumber" class="form-control")
+              
+            // Song Name Field
+            label Song Name 
+            input(type="text" name="song name" class="form-control")
+              
+            // More Fields to put after. TODO: Make the margin-bottom styles a css style in a separate file.
+    
     // Make Wiki Code button
-    div(class="col-xs-12 col-sm-2")
-      div(class="panel panel-default")
-        // Panel Heading
-        div(class="panel-heading")
-          center
-            strong
-              h2 Make Wiki Code
-        //End Panel Heading
-        
-                
+    div(class="col-sm-12 col-md-2")
+      button(type="submit" class="btn btn-primary btn-block") Make Wiki Code
 
     // Wiki Code Panel
-    div(class="col-xs-12 col-sm-5")
+    div(class="col-sm-12 col-md-5")
       div(class="panel panel-default")
-        // Panel Heading
         div(class="panel-heading")
           center
-            strong
-              h2 Wiki Code
-        // Panel Body
-        // Contains resulting Wiki Code from Info panel
+            h4(class="panel-title") Wiki Code
+              
+        // Panel Body containing the textarea with the wikicode from the Info panel contents.
         div(class="panel-body")
-          p Wiki Code here.
-        // End Panel Body
-    // End First Panel
-    
-    
+          textarea(class="form-control")
