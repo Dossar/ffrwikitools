@@ -1,0 +1,108 @@
+extends ./layout.jade
+
+block scripts
+
+  link(rel='stylesheet' href='/css/wikicode.css')
+
+  script(src='/js/jquery.matchHeight-min.js')
+  
+  script.
+    $(document).ready( function () {
+    $('.equal-height-panels .panel').matchHeight();
+    });
+    
+  // Make WikiCode button code  
+  script(src="/js/wikicode.js")
+
+block content
+  title Wiki Code Creator
+  
+  // Header div
+  div(class="row")
+    // We need the offsets here due to the sidebar on the left
+    div(class="col-xs-12")
+      h1(class="page-header") Wiki Code Creator
+  
+  // Row for the two panels
+  div(class="row equal-height-panels")
+  
+    // Info Panel
+    div(class="col-sm-12 col-md-5")
+      div(class="panel panel-default")
+      
+        // Panel Heading
+        div(class="panel-heading")
+          center
+            h4(class="panel-title") Info
+
+        // Panel Body that containing the form with text fields that the user will fill out.
+        div(class="panel-body")
+          form(name="Song and File fields" method="post")
+              
+            // Level Number Field
+            label Level Number
+            input(id="levelnumber" type="text" name="levelnumber" class="form-control")
+              
+            // Song Name Field
+            label Song Name 
+            input(id="songname" type="text" name="songname" class="form-control")
+              
+            // Musician Field
+            label Musician
+            input(id="musician" type="text" name="musician" class="form-control")
+              
+            // Genre Field
+            label Genre 
+            input(id="genre" type="text" name="genre" class="form-control")
+              
+            // Category Field
+            label Category 
+            input(id="category" type="text" name="category" class="form-control")
+              
+            // Step Artist Field
+            label Step Artist 
+            input(id="stepartist" type="text" name="stepartist" class="form-control")
+              
+            // File Release Date Field
+            label File Release Date
+            input(id="filereleasedate" type="text" name="filereleasedate" class="form-control")
+              
+            // Song Length Field
+            label Song Length
+            input(id="songlength" type="text" name="songlength" class="form-control")
+              
+            // Difficulty Field
+            label Difficulty
+            input(id="difficulty" type="text" name="difficulty" class="form-control")
+              
+            // Notecount Field
+            label Notecount
+            input(id="notecount" type="text" name="notecount" class="form-control")
+              
+            // NPS Field
+            label NPS 
+            input(id="nps" type="text" name="nps" class="form-control")
+              
+            // BPM Field
+            label BPM 
+            input(id="bpm" type="text" name="bpm" class="form-control")
+              
+    
+    // Make Wiki Code button
+    div(class="col-sm-12 col-md-2")
+      // On click, execute makeWikiCode function
+      button(type="submit" class="btn btn-primary btn-block" onclick='makeWikiCode()') Make Wiki Code
+      // TODO: Make this button fetch a levelstats URL page, and fill in the form fields from level id.
+      button(type="submit" class="btn btn-primary btn-block" disabled) Fill Form Fields From Level Number
+
+    // Wiki Code Panel
+    div(class="col-sm-12 col-md-5")
+      div(class="panel panel-default")
+        div(class="panel-heading")
+          center
+            h4(class="panel-title") Wiki Code
+              
+        // Panel Body containing the textarea with the wikicode from the Info panel contents.
+        div(class="panel-body")
+          textarea(class="form-control", id="wikicode", readonly)
+            
