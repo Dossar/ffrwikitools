@@ -10,6 +10,9 @@ block scripts
     $(document).ready( function () {
     $('.equal-height-panels .panel').matchHeight();
     });
+    
+  // Make WikiCode button code  
+  script(src="/js/wikicode.js")
 
 block content
   title Wiki Code Creator
@@ -42,13 +45,53 @@ block content
               
             // Song Name Field
             label Song Name 
-            input(type="text" name="song name" class="form-control")
+            input(id="songname" type="text" name="song name" class="form-control")
               
-            // More Fields to put after. TODO: Make the margin-bottom styles a css style in a separate file.
+            // Musician Field
+            label Musician
+            input(id="musician" type="text" name="song name" class="form-control")
+              
+            // Genre Field
+            label Genre 
+            input(id="genre" type="text" name="song name" class="form-control")
+              
+            // Category Field
+            label Category 
+            input(id="category" type="text" name="song name" class="form-control")
+              
+            // Step Artist Field
+            label Step Artist 
+            input(id="stepartist" type="text" name="song name" class="form-control")
+              
+            // File Release Date Field
+            label File Release Date
+            input(id="filereleasedate" type="text" name="song name" class="form-control")
+              
+            // Song Length Field
+            label Song Length
+            input(id="songlength" type="text" name="song name" class="form-control")
+              
+            // Difficulty Field
+            label Difficulty
+            input(id="difficulty" type="text" name="song name" class="form-control")
+              
+            // Notecount Field
+            label Notecount
+            input(id="notecount" type="text" name="song name" class="form-control")
+              
+            // NPS Field
+            label NPS 
+            input(id="nps" type="text" name="song name" class="form-control")
+              
+            // BPM Field
+            label BPM 
+            input(id="bpm" type="text" name="song name" class="form-control")
+              
     
     // Make Wiki Code button
     div(class="col-sm-12 col-md-2")
-      button(type="submit" class="btn btn-primary btn-block") Make Wiki Code
+      // On click, execute makeWikiCode function
+      button(type="submit" class="btn btn-primary btn-block" onclick='makeWikiCode()') Make Wiki Code
 
     // Wiki Code Panel
     div(class="col-sm-12 col-md-5")
@@ -59,4 +102,5 @@ block content
               
         // Panel Body containing the textarea with the wikicode from the Info panel contents.
         div(class="panel-body")
-          textarea(class="form-control")
+          textarea(class="form-control", id="wikicode")
+            
