@@ -45,53 +45,55 @@ block content
               
             // Song Name Field
             label Song Name 
-            input(id="songname" type="text" name="song name" class="form-control")
+            input(id="songname" type="text" name="songname" class="form-control")
               
             // Musician Field
             label Musician
-            input(id="musician" type="text" name="song name" class="form-control")
+            input(id="musician" type="text" name="musician" class="form-control")
               
             // Genre Field
             label Genre 
-            input(id="genre" type="text" name="song name" class="form-control")
+            input(id="genre" type="text" name="genre" class="form-control")
               
             // Category Field
             label Category 
-            input(id="category" type="text" name="song name" class="form-control")
+            input(id="category" type="text" name="category" class="form-control")
               
             // Step Artist Field
             label Step Artist 
-            input(id="stepartist" type="text" name="song name" class="form-control")
+            input(id="stepartist" type="text" name="stepartist" class="form-control")
               
             // File Release Date Field
             label File Release Date
-            input(id="filereleasedate" type="text" name="song name" class="form-control")
+            input(id="filereleasedate" type="text" name="filereleasedate" class="form-control")
               
             // Song Length Field
             label Song Length
-            input(id="songlength" type="text" name="song name" class="form-control")
+            input(id="songlength" type="text" name="songlength" class="form-control")
               
             // Difficulty Field
             label Difficulty
-            input(id="difficulty" type="text" name="song name" class="form-control")
+            input(id="difficulty" type="text" name="difficulty" class="form-control")
               
             // Notecount Field
             label Notecount
-            input(id="notecount" type="text" name="song name" class="form-control")
+            input(id="notecount" type="text" name="notecount" class="form-control")
               
             // NPS Field
             label NPS 
-            input(id="nps" type="text" name="song name" class="form-control")
+            input(id="nps" type="text" name="nps" class="form-control")
               
             // BPM Field
             label BPM 
-            input(id="bpm" type="text" name="song name" class="form-control")
+            input(id="bpm" type="text" name="bpm" class="form-control")
               
     
     // Make Wiki Code button
     div(class="col-sm-12 col-md-2")
       // On click, execute makeWikiCode function
       button(type="submit" class="btn btn-primary btn-block" onclick='makeWikiCode()') Make Wiki Code
+      // TODO: Make this button fetch a levelstats URL page, and fill in the form fields from level id.
+      button(type="submit" class="btn btn-primary btn-block" disabled) Fill Form Fields From Level Number
 
     // Wiki Code Panel
     div(class="col-sm-12 col-md-5")
@@ -102,5 +104,5 @@ block content
               
         // Panel Body containing the textarea with the wikicode from the Info panel contents.
         div(class="panel-body")
-          textarea(class="form-control", id="wikicode", readonly='')
+          textarea(class="form-control", id="wikicode", readonly)
             

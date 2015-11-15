@@ -14,3 +14,7 @@ div.panel-body {
 textarea.form-control {
   height: 100%;
 }
+
+#wikicode {
+  font-family: "Courier New";
+}
