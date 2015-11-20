@@ -1,0 +1,21 @@
+input.form-control {
+  margin-bottom: 15px;
+}
+
+button.btn-block {
+  margin-bottom: 4px;
+  white-space: normal;
+}
+
+div.panel-body {
+  height: 80%;
+}
+
+textarea.form-control {
+  height: 100%;
+}
+
+#nps_generator {
+  max-height: 100%;
+  max-width: 100%;
+}

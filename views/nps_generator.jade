@@ -1,0 +1,66 @@
+extends ./layout.jade
+
+block scripts
+
+  link(rel='stylesheet' href='/css/nps_generator.css')
+
+  script(src='/js/jquery.matchHeight-min.js')
+  
+  script.
+    $(document).ready( function () {
+    $('.equal-height-panels .panel').matchHeight();
+    });
+    
+  // Generate NPS button code  
+  script(src="/js/nps_generator.js")
+  
+block content
+  title NPS Generator
+  
+  // Header div
+  div(class="row")
+    // We need the offsets here due to the sidebar on the left
+    div(class="col-xs-12")
+      h1(class="page-header") NPS Generator
+  
+  //I Stole This From Pika -- blanky
+  // Row for the two panels
+  div(class="row")
+  
+    // Info Panel
+    div(class="col-xs-12")
+      div(class="panel panel-default")
+      
+        // Panel Heading
+        div(class="panel-heading")
+          center
+            h4(class="panel-title") Info
+
+        // Panel Body that containing the form with text field that the user will fill out.
+        div(class="panel-body")
+          div(class="row")
+
+            // Level Number Field
+            div(class="col-xs-12")
+              div(class="form-group")
+                div(class="col-xs-12 col-sm-6")
+                  input(id="levelnumber" type="text" class="form-control" placeholder="Enter Level Number")
+                div(class="col-xs-12 col-sm-6")
+                  // On click, execute generateNPSImage function
+                  button(type="submit" class="btn btn-primary btn-block" onclick='generateNPSImage()') Generate Image             
+      
+  // Row for NPS Image
+  div(class="row")
+  
+    // NPS Image Panel
+    div(class="col-xs-12")
+      div(class="panel panel-default")
+        div(class="panel-heading")
+          center
+            h4(class="panel-title") NPS Image
+              
+        // Panel Body containing the NPS Image.
+        div(class="panel-body")
+          center
+            img(id="nps_generator")
+            
