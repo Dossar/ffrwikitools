@@ -28,20 +28,11 @@ app.get('/wikicode', function(req, res) {
     res.render('wikicode.jade');
 })
 
-<<<<<<< HEAD
-//<<<<<<< HEAD
-=======
->>>>>>> master
 // NPS Generator Page -- currently hidden (notpron anybody?!)
 app.get('/nps_generator', function(req, res) {
     res.render('nps_generator.jade');
 })
 
-<<<<<<< HEAD
-//=======
-//>>>>>>> f4d39ce45bd60005f5ced9df6f993920b4c2b22b
-=======
->>>>>>> master
 // Error page which redirects the user back to Search.
 app.get('/*', function(req, res) {
   res.status(404).render('error.jade');
