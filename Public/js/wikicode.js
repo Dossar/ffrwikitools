@@ -39,3 +39,17 @@ function makeWikiCode() {
   // Update Wiki Code textarea
   $('#wikicode').val(swikicode + fwikicode);
 }
+
+//The modules to have generateLevelStats() run
+var htmlToJson = require('../../node_modules/html-to-json/lib/htmlToJson.js');
+
+//Obtains the Level Stats to fill in the fields, in wikicode.jade
+function generateLevelStat() {
+    var promise = htmlToJson.request('http://www.flashflashrevolution.com/levelstats.php?level=' + $("#levelnumber").val(), {
+        'images': ['img', function ($img) {
+            return $img.attr('src');
+        }]
+    }, function (err, result) {
+        console.log(result);
+    });
+}
