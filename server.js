@@ -25,12 +25,19 @@ app.get('/', function(req, res) {
 
 // WikiCode Page.
 app.get('/wikicode', function(req, res) {
-    res.render('wikicode.jade');
+  res.render('wikicode.jade');
 })
 
 // NPS Generator Page -- currently hidden (notpron anybody?!)
 app.get('/nps_generator', function(req, res) {
-    res.render('nps_generator.jade');
+  
+  var levelNum = 0;
+  
+  if (req.query.levelnumber != undefined) {
+    levelNum = req.query.levelnumber;
+  }
+  
+  res.render('nps_generator.jade', {levelnum: levelNum});
 })
 
 // Error page which redirects the user back to Search.
