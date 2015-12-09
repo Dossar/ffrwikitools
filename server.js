@@ -23,10 +23,8 @@ app.get('/', function(req, res) {
   res.render('home.jade');
 });
 
-// WikiCode Page and htmltojson -- circumvented cross-domain restrictions 
+// WikiCode Page and htmltojson
 app.get('/wikicode', function(req, res) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With"); 
     res.render('wikicode.jade');
 })
 
