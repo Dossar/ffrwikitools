@@ -1,18 +1,14 @@
 extends ./layout.jade
 
 block scripts
-
   link(rel='stylesheet' href='/css/wikicode.css')
-
   script(src='/js/jquery.matchHeight-min.js')
-  
   script.
     $(document).ready( function () {
     $('.equal-height-panels .panel').matchHeight();
     });
-    
-  // Make WikiCode button code  
-  script(src="/js/wikicode.js")
+  script(src="/js/wikicode_browserify.js")
+
 
 block content
   title Wiki Code Creator
@@ -91,9 +87,9 @@ block content
     // Make Wiki Code button
     div(class="col-sm-12 col-md-2")
       // On click, execute makeWikiCode function
-      button(type="submit" class="btn btn-primary btn-block" onclick='makeWikiCode()') Make Wiki Code
+      button(type="submit" id="make_wikicode" class="btn btn-primary btn-block") Make Wiki Code
       // TODO: Make this button fetch a levelstats URL page, and fill in the form fields from level id.
-      button(type="submit" class="btn btn-primary btn-block" onclick='generateLevelStat()') Fill Form Fields From Level Number
+      button(type="submit" id="fill_form_fields" class="btn btn-primary btn-block") Fill Form Fields From Level Number
 
     // Wiki Code Panel
     div(class="col-sm-12 col-md-5")
@@ -105,4 +101,3 @@ block content
         // Panel Body containing the textarea with the wikicode from the Info panel contents.
         div(class="panel-body")
           textarea(class="form-control", id="wikicode", readonly)
-            

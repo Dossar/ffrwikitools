@@ -23,10 +23,13 @@ app.get('/', function(req, res) {
   res.render('home.jade');
 });
 
-// WikiCode Page.
+// WikiCode Page and htmltojson -- circumvented cross-domain restrictions 
 app.get('/wikicode', function(req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With"); 
     res.render('wikicode.jade');
 })
+
 
 // NPS Generator Page -- currently hidden (notpron anybody?!)
 app.get('/nps_generator', function(req, res) {
