@@ -30562,13 +30562,46 @@ $('#levelnumber').keyup(function(){
 //var htmlToJson = require('../../node_modules/html-to-json/lib/htmlToJson.js');
 var htmlToJson = require('html-to-json');
 $('#fill_form_fields').click(function() {
-    var promise = htmlToJson.request('http://www.flashflashrevolution.com/levelstats.php?level=' + $("#levelnumber").val(), {
-        'images': ['img', function ($img) {
-            return $img.attr('src');
+    var url = 'http://www.flashflashrevolution.com/levelstats.php?level=' + parseInt($("#levelnumber").val());
+    var promise = htmlToJson.request(url, {
+        'title': ['h2', function ($h2) {
+            return $h2.text();
+        }],
+        'song_info': ['td[align="left"]', function ($td) { //FFR's code is BLEH but so is this minor hack
+            return $td.next().text();
         }]
     }, function (err, result) {
-        console.log(result);
+        //console.log(result);
+        //put the info in the corresponding fields
+        $("#songname").val(result.title[1]);
+        $("#musician").val(result.song_info[0]);
+        $("#genre").val(result.song_info[5]);
+        $("#category").val(result.song_info[4]);
+        $("#stepartist").val(result.song_info[2]);
+        $("#filereleasedate").val(result.song_info[7]);
+        $("#songlength").val(result.song_info[8]);
+        $("#difficulty").val(result.song_info[6]);
     });
+    
+    //var url = 'http://flashflashrevolution.com/levelstats.php?level=' + parseInt($("#levelnumber").val());
+    /*
+    $.getJSON(url + '?jsoncallback=?', { format: "json" }, function(data) { 
+      JSON = data;
+      alert('no');
+    });
+    
+    $.ajax({                                                                                                                                                                                                        
+      type: 'GET',                                                                                                                                                                                                 
+      url: url,
+      async: true,
+      //dataType: 'json',                                                                                                                                                                                                
+      success: function(data) {
+        parsed_elements = $.parseHTML(data, document, true);
+      },                                                                                                                                                                                       
+      error: function() { console.log('Uh Oh!'); },
+      //jsonp: 'jsonp'                                                                                                                                                
+    });
+    */
 });
 },{"html-to-json":251}],251:[function(require,module,exports){
 module.exports = require('./lib/htmlToJson');
