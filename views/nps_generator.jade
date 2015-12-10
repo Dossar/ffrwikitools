@@ -38,16 +38,17 @@ block content
 
         // Panel Body that containing the form with text field that the user will fill out.
         div(class="panel-body")
-          div(class="row")
+          form(action = '/nps_generator' method='get' name="levelNum")
+            div(class="row")
 
-            // Level Number Field
-            div(class="col-xs-12")
-              div(class="form-group")
-                div(class="col-xs-12 col-sm-6")
-                  input(id="levelnumber" type="text" class="form-control" placeholder="Enter Level Number")
-                div(class="col-xs-12 col-sm-6")
-                  // On click, execute generateNPSImage function
-                  button(type="submit" class="btn btn-primary btn-block" onclick='generateNPSImage()') Generate Image             
+              // Level Number Field
+              div(class="col-xs-12")
+                div(class="form-group")
+                  div(class="col-xs-12 col-sm-6")
+                    input(id="levelnumber" type="text" name="levelnumber" class="form-control" value="#{levelnum}")
+                  div(class="col-xs-12 col-sm-6")
+                    // On click, execute generateNPSImage function
+                    button(type="submit" class="btn btn-primary btn-block") Generate Image             
       
   // Row for NPS Image
   div(class="row")
@@ -61,6 +62,7 @@ block content
               
         // Panel Body containing the NPS Image.
         div(class="panel-body")
-          center
-            img(id="nps_generator")
+          if (levelnum != 0)
+            center
+              img(id="nps_generator" src="http://www.flashflashrevolution.com/tools/nps_image.php?id=#{levelnum}")
             
