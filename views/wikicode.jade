@@ -19,6 +19,22 @@ block content
     // We need the offsets here due to the sidebar on the left
     div(class="col-xs-12")
       h1(class="page-header") Wiki Code Creator
+      
+  // Row for NPS Image
+  div(class="row")
+  
+    // NPS Image Panel
+    div(class="col-xs-12")
+      div(class="panel panel-default")
+        div(class="panel-heading")
+          center
+            h4(class="panel-title") NPS Image
+              
+        // Panel Body containing the NPS Image.
+        div(class="panel-body")
+          if (levelnum != 0)
+            center
+              img(id="nps_generator")
   
   // Row for the two panels
   div(class="row equal-height-panels")

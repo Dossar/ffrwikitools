@@ -30562,6 +30562,14 @@ $('#levelnumber').keyup(function(){
 //var htmlToJson = require('../../node_modules/html-to-json/lib/htmlToJson.js');
 var htmlToJson = require('html-to-json');
 $('#fill_form_fields').click(function() {
+
+    // First generate the nps image.
+    if ($('#levelnumber').val() !== "") {
+        var url = "http://www.flashflashrevolution.com/tools/nps_image.php?id=" + parseInt($('#levelnumber').val());
+        $('#nps_generator').attr('src', url);
+    }
+
+    // Then fill the input fields.
     var url = 'http://www.flashflashrevolution.com/levelstats.php?level=' + parseInt($("#levelnumber").val());
     var promise = htmlToJson.request(url, {
         'title': ['h2', function ($h2) {
