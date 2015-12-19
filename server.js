@@ -6,6 +6,19 @@
  *
  ****************************************************/
 
+// This is just for debugging when we spawn a child process.
+(function() {
+    var childProcess = require("child_process");
+    var oldSpawn = childProcess.spawn;
+    function mySpawn() {
+        console.log('spawn called');
+        console.log(arguments);
+        var result = oldSpawn.apply(this, arguments);
+        return result;
+    }
+    childProcess.spawn = mySpawn;
+})();
+
 // Use express to create a server.
 var express = require('express');
 var app = express();
@@ -18,6 +31,14 @@ var constants = require('./Public/js/constants.js');
 app.use(express.static(__dirname + '/Public'));
 var fs = require('fs');
 
+/* Spawn a synchronous child process to run our python script, and return
+ * the print statement of the song info object to pass as data to our
+ * back end to use for information on our wikicode page.
+ */
+var child = require('child_process');
+var spawnResult = child.execSync('python levelstatsparse.py');
+console.log("Result: " + spawnResult);
+
 // Home Page.
 app.get('/', function(req, res) {
   res.render('home.jade');
@@ -27,7 +48,6 @@ app.get('/', function(req, res) {
 app.get('/wikicode', function(req, res) {
   res.render('wikicode.jade');
 })
-
 
 // NPS Generator Page -- currently hidden (notpron anybody?!)
 app.get('/nps_generator', function(req, res) {
