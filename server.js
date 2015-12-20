@@ -30,14 +30,21 @@ var constants = require('./Public/js/constants.js');
 // web pages, such as for images, javascript, and css.
 app.use(express.static(__dirname + '/Public'));
 var fs = require('fs');
+var child = require('child_process'); // Needed to spawn child process
 
 /* Spawn a synchronous child process to run our python script, and return
  * the print statement of the song info object to pass as data to our
  * back end to use for information on our wikicode page.
  */
-var child = require('child_process');
-var spawnResult = child.execSync('python levelstatsparse.py');
-console.log("Result: " + spawnResult);
+function getLevelStatsInfo (levelNumber) {
+  var command = 'python levelstatsparse.py --level ' + levelNumber;
+  var spawnResult = child.execSync(command);
+  var spawnString = spawnResult.toString();
+  var stringifiedJson = JSON.stringify(spawnString);
+  var jsonToReturn = JSON.parse(stringifiedJson);
+  // console.log(jsonToReturn);
+  return jsonToReturn;
+}
 
 // Home Page.
 app.get('/', function(req, res) {
@@ -46,7 +53,18 @@ app.get('/', function(req, res) {
 
 // WikiCode Page and htmltojson
 app.get('/wikicode', function(req, res) {
-  res.render('wikicode.jade');
+
+  var songData = -1;
+  
+  // Retrieve the JSON of song information data. JSON keys in python script.
+  if (req.query.levelnumber != undefined) {
+    songData = getLevelStatsInfo(req.query.levelnumber);
+    console.log(songData);
+  } else {
+    // no-op 
+  }
+  
+  res.render('wikicode.jade', {songData: songData});
 })
 
 // NPS Generator Page -- currently hidden (notpron anybody?!)

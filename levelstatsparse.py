@@ -4,12 +4,22 @@ import sys
 from bs4 import BeautifulSoup
 import requests
 import unicodedata
+import argparse
+import json
 
-# print 'Number of arguments:', len(sys.argv), 'arguments.'
-# print 'Argument List:', str(sys.argv)
+# Empty placeholder object for getting our argument
+class emptyObject(object):
+    pass
+
+# Set up the level number argument to parse for our script.
+levelObject = emptyObject()
+parser = argparse.ArgumentParser(description='Process a level number.')
+parser.add_argument('-l','--level', help='Level Number', required=True)
+args = vars(parser.parse_args())
+levelId = args['level']
 
 # Get the response text from the levelstats page.
-response = requests.get('http://www.flashflashrevolution.com/levelstats.php?level=2130')
+response = requests.get('http://www.flashflashrevolution.com/levelstats.php?level=' + levelId)
 responseText = response.text
 levelPageSoup = BeautifulSoup(responseText, "html.parser")
 
@@ -38,6 +48,7 @@ tr[10] = Number of FC's
 tr[11] = Number of Players
 tr[12] = Number of Times Played
 """
+title = songTitle.get_text()
 musician = songInfoTds[0].get_text()
 stepartist = songInfoTds[2].get_text()
 levelNum = songInfoTds[3].get_text()
@@ -48,6 +59,7 @@ releaseDate = songInfoTds[7].get_text()
 songLength = songInfoTds[8].get_text()
 
 # Normalize the unicode strings in our data
+title = unicodedata.normalize('NFKD', title).encode('ascii','ignore')
 musician = unicodedata.normalize('NFKD', musician).encode('ascii','ignore')
 stepartist = unicodedata.normalize('NFKD', stepartist).encode('ascii','ignore')
 levelNum = unicodedata.normalize('NFKD', levelNum).encode('ascii','ignore')
@@ -59,6 +71,7 @@ songLength = unicodedata.normalize('NFKD', songLength).encode('ascii','ignore')
 
 # Create a dictionary to return
 songInfo = {}
+songInfo['title'] = title
 songInfo['musician'] = musician
 songInfo['stepartist'] = stepartist
 songInfo['id'] = levelNum
@@ -69,4 +82,5 @@ songInfo['release'] = releaseDate
 songInfo['length'] = songLength
 
 # For transferring data back to node through stdout
-print songInfo
+# print songInfo
+print json.dumps(songInfo, sort_keys=True, indent=4, separators=(',', ': '))
