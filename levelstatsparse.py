@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 import requests
 import unicodedata
 import argparse
+import json
 
 # Set up the level number argument to parse for our script.
 parser = argparse.ArgumentParser(description='Process a level number.')
@@ -78,11 +79,11 @@ try:
     songInfo['length'] = songLength
 
     # For transferring data back to node through stdout
-    print songInfo
+    print json.dumps(songInfo, sort_keys=True, indent=4, separators=(',', ': '))
 
 except:
 
-    # Something went wrong with parsing. return a placeholder song info dictionary.
+    # Create a dictionary to return to prevent a page blowup
     songInfo = {}
     songInfo['title'] = 'Invalid Id'
     songInfo['musician'] = 'Invalid Id'
@@ -95,4 +96,4 @@ except:
     songInfo['length'] = 'Invalid Id'
 
     # For transferring data back to node through stdout
-    print songInfo
+    print json.dumps(songInfo, sort_keys=True, indent=4, separators=(',', ': '))
