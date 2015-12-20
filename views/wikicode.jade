@@ -7,8 +7,8 @@ block scripts
     $(document).ready( function () {
     $('.equal-height-panels .panel').matchHeight();
     });
-  //script(src="/js/wikicode_source.js")
-  script(src="/js/wikicode_browserify.js")
+  script(src="/js/wikicode_source.js")
+  //script(src="/js/wikicode_browserify.js")
 
 
 block content
@@ -32,9 +32,9 @@ block content
               
         // Panel Body containing the NPS Image.
         div(class="panel-body")
-          if (levelnum != 0)
+          if (songData != -1)
             center
-              img(id="nps_generator")
+              img(id="nps_generator" src="http://www.flashflashrevolution.com/tools/nps_image.php?id=#{songData.id}")
   
   // Row for the two panels
   div(class="row equal-height-panels")
@@ -50,63 +50,114 @@ block content
 
         // Panel Body that containing the form with text fields that the user will fill out.
         div(class="panel-body")
-          form(name="Song and File fields" method="post")
-              
-            // Level Number Field
-            label Level Number
-            input(id="levelnumber" type="text" name="levelnumber" class="form-control")
-              
-            // Song Name Field
-            label Song Name 
-            input(id="songname" type="text" name="songname" class="form-control")
-              
-            // Musician Field
-            label Musician
-            input(id="musician" type="text" name="musician" class="form-control")
-              
-            // Genre Field
-            label Genre 
-            input(id="genre" type="text" name="genre" class="form-control")
-              
-            // Category Field
-            label Category 
-            input(id="category" type="text" name="category" class="form-control")
-              
-            // Step Artist Field
-            label Step Artist 
-            input(id="stepartist" type="text" name="stepartist" class="form-control")
-              
-            // File Release Date Field
-            label File Release Date
-            input(id="filereleasedate" type="text" name="filereleasedate" class="form-control")
-              
-            // Song Length Field
-            label Song Length
-            input(id="songlength" type="text" name="songlength" class="form-control")
-              
-            // Difficulty Field
-            label Difficulty
-            input(id="difficulty" type="text" name="difficulty" class="form-control")
-              
-            // Notecount Field
-            label Notecount
-            input(id="notecount" type="text" name="notecount" class="form-control")
-              
-            // NPS Field
-            label NPS 
-            input(id="nps" type="text" name="nps" class="form-control")
-              
-            // BPM Field
-            label BPM 
-            input(id="bpm" type="text" name="bpm" class="form-control")
-              
+          form(action = '/wikicode' method='get' name="songInformation")
+            
+            if(songData == -1)
+              button(type="submit" class="btn btn-primary btn-block" id="fill_form_fields") Fill from Level Id
+            
+              // Level Number Field
+              label Level Number
+              input(id="levelnumber" type="text" name="levelnumber" class="form-control" value="1")
+
+              // Song Name Field
+              label Song Name 
+              input(id="songname" type="text" class="form-control")
+
+              // Musician Field
+              label Musician
+              input(id="musician" type="text" class="form-control")
+
+              // Genre Field
+              label Genre 
+              input(id="genre" type="text" class="form-control")
+
+              // Category Field
+              label Category 
+              input(id="category" type="text" class="form-control")
+
+              // Step Artist Field
+              label Step Artist 
+              input(id="stepartist" type="text" class="form-control")
+
+              // File Release Date Field
+              label File Release Date
+              input(id="filereleasedate" type="text" class="form-control")
+
+              // Song Length Field
+              label Song Length
+              input(id="songlength" type="text" class="form-control")
+
+              // Difficulty Field
+              label Difficulty
+              input(id="difficulty" type="text" class="form-control")
+
+              // Notecount Field
+              label Notecount
+              input(id="notecount" type="text" class="form-control")
+
+              // NPS Field
+              label NPS 
+              input(id="nps" type="text" class="form-control")
+
+              // BPM Field
+              label BPM 
+              input(id="bpm" type="text" class="form-control")
+
+            else
+              button(type="submit" class="btn btn-primary btn-block" id="fill_form_fields") Fill from Level Id
+
+              // Level Number Field
+              label Level Number
+              input(id="levelnumber" type="text" name="levelnumber" class="form-control" value="#{songData.id}")
+
+              // Song Name Field
+              label Song Name 
+              input(id="songname" type="text" class="form-control" value="#{songData.title}")
+
+              // Musician Field
+              label Musician
+              input(id="musician" type="text" class="form-control" value="#{songData.musician}")
+
+              // Genre Field
+              label Genre 
+              input(id="genre" type="text" class="form-control" value="#{songData.genre}")
+
+              // Category Field
+              label Category 
+              input(id="category" type="text" class="form-control" value="#{songData.style}")
+
+              // Step Artist Field
+              label Step Artist 
+              input(id="stepartist" type="text" class="form-control" value="#{songData.stepartist}")
+
+              // File Release Date Field
+              label File Release Date
+              input(id="filereleasedate" type="text" class="form-control" value="#{songData.release}")
+
+              // Song Length Field
+              label Song Length
+              input(id="songlength" type="text" class="form-control" value="#{songData.length}")
+
+              // Difficulty Field
+              label Difficulty
+              input(id="difficulty" type="text" class="form-control" value="#{songData.difficulty}")
+
+              // Notecount Field
+              label Notecount
+              input(id="notecount" type="text" class="form-control")
+
+              // NPS Field
+              label NPS 
+              input(id="nps" type="text" class="form-control")
+
+              // BPM Field
+              label BPM 
+              input(id="bpm" type="text" class="form-control")     
     
     // Make Wiki Code button
     div(class="col-sm-12 col-md-2")
       // On click, execute makeWikiCode function
       button(type="submit" id="make_wikicode" class="btn btn-primary btn-block") Make Wiki Code
-      // TODO: Make this button fetch a levelstats URL page, and fill in the form fields from level id.
-      button(type="submit" id="fill_form_fields" class="btn btn-primary btn-block") Fill Form Fields From Level Number
 
     // Wiki Code Panel
     div(class="col-sm-12 col-md-5")
