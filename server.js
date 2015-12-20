@@ -38,7 +38,7 @@ var child = require('child_process'); // Needed to spawn child process
  */
 function getLevelStatsInfo (levelNumber) {
   var command = 'python levelstatsparse.py --level ' + levelNumber;
-  spawnString = child.execSync(command, { encoding: 'utf8' });
+  var spawnString = child.execSync(command, { encoding: 'utf8' });
   return JSON.parse(spawnString);
 }
 
