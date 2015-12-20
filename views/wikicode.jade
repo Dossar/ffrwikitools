@@ -32,9 +32,9 @@ block content
               
         // Panel Body containing the NPS Image.
         div(class="panel-body")
-          if (levelnum != 0)
+          if (songData != -1)
             center
-              img(id="nps_generator")
+              img(id="nps_generator" src="http://www.flashflashrevolution.com/tools/nps_image.php?id=#{songData.id}")
   
   // Row for the two panels
   div(class="row equal-height-panels")
@@ -108,7 +108,7 @@ block content
 
               // Level Number Field
               label Level Number
-              input(id="levelnumber" type="text" name="levelnumber" class="form-control" value="#{songData}")
+              input(id="levelnumber" type="text" name="levelnumber" class="form-control" value="#{songData.id}")
 
               // Song Name Field
               label Song Name 
