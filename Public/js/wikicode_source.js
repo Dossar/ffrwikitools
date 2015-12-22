@@ -32,9 +32,10 @@ $('#make_wikicode').click(function (){
   fwikicode += "| filerelease     = " + $("#filereleasedate").val() + "\n";
   fwikicode += "| songlength      = " + $("#songlength").val() + "\n";
   fwikicode += "| difficulty      = " + $("#difficulty").val() + "\n";
+  fwikicode += "| notecount       = " + $("#notecount").val() + "\n";
   fwikicode += "| nps             = " + $("#nps").val() + "\n";
-  fwikicode += "| category        = " + $("#category").val() + "\n";  
-  fwikicode += "| bpm             = " + $("#bpm").val() + "\n}}\n";
+  fwikicode += "| bpm             = " + $("#bpm").val() + "\n";
+  fwikicode += "| category        = " + $("#category").val() + "\n}}\n"; 
   
   // Update Wiki Code textarea
   $('#wikicode').val(swikicode + fwikicode);
