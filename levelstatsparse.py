@@ -38,12 +38,13 @@ try:
     tr[4] = Song Genre
     tr[5] = Song Style
     tr[6] = Difficulty
-    tr[7] = Release Date
-    tr[8] = Song Length
-    tr[9] = Number of AAA's
-    tr[10] = Number of FC's
-    tr[11] = Number of Players
-    tr[12] = Number of Times Played
+    tr[7] = Notecount
+    tr[8] = Release Date
+    tr[9] = Song Length
+    tr[10] = Number of AAA's
+    tr[11] = Number of FC's
+    tr[12] = Number of Players
+    tr[13] = Number of Times Played
     """
     title = songTitle.get_text()
     musician = songInfoTds[0].get_text()
@@ -52,8 +53,9 @@ try:
     songGenre = songInfoTds[4].get_text()
     songStyle = songInfoTds[5].get_text()
     difficulty = songInfoTds[6].get_text()
-    releaseDate = songInfoTds[7].get_text()
-    songLength = songInfoTds[8].get_text()
+    noteCount = songInfoTds[7].get_text()
+    releaseDate = songInfoTds[8].get_text()
+    songLength = songInfoTds[9].get_text()
 
     # Normalize the unicode strings in our data
     title = unicodedata.normalize('NFKD', title).encode('ascii','ignore')
@@ -63,6 +65,7 @@ try:
     songGenre = unicodedata.normalize('NFKD', songGenre).encode('ascii','ignore')
     songStyle = unicodedata.normalize('NFKD', songStyle).encode('ascii','ignore')
     difficulty = unicodedata.normalize('NFKD', difficulty).encode('ascii','ignore')
+    noteCount = unicodedata.normalize('NFKD', noteCount).encode('ascii','ignore')
     releaseDate = unicodedata.normalize('NFKD', releaseDate).encode('ascii','ignore')
     songLength = unicodedata.normalize('NFKD', songLength).encode('ascii','ignore')
 
@@ -75,6 +78,7 @@ try:
     songInfo['genre'] = songGenre
     songInfo['style'] = songStyle
     songInfo['difficulty'] = difficulty
+    songInfo['notecount'] = noteCount 
     songInfo['release'] = releaseDate
     songInfo['length'] = songLength
 
@@ -92,6 +96,7 @@ except:
     songInfo['genre'] = 'Invalid Id'
     songInfo['style'] = 'Invalid Id'
     songInfo['difficulty'] = 'Invalid Id'
+    songInfo['notecount'] = 'Invalid Id'
     songInfo['release'] = 'Invalid Id'
     songInfo['length'] = 'Invalid Id'
 
